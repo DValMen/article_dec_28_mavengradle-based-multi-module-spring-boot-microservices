@@ -15,6 +15,7 @@ $ mvn clean spring-boot:run -pl service-a
 $ mvn clean package spring-boot:build-image -pl service-a
 ```
 
+
 ### Gradle
 
 * List all projects under gradle project
