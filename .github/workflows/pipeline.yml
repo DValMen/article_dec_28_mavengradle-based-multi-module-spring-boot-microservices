@@ -44,8 +44,8 @@ jobs:
       - name: Send docker images
         run: |
           docker tag 7d820823f33c dvalmen/multi-module-spring-boot-microservice-a
-          docker tag c46339799598 dvaldes/spring-multi-module-service-service-b
-          docker tag 61e555bbcb7b dvaldes/spring-multi-module-service-service-c
-          docker push dvalmen/spring-multi-module-service-service-a
-          docker push dvalmen/spring-multi-module-service-service-b
-          docker push dvalmen/spring-multi-module-service-service-c
+          docker tag c46339799598 dvaldes/multi-module-spring-boot-microservice-b
+          docker tag 61e555bbcb7b dvaldes/multi-module-spring-boot-microservice-c
+          docker push dvalmen/multi-module-spring-boot-microservice-a
+          docker push dvalmen/multi-module-spring-boot-microservice-b
+          docker push dvalmen/multi-module-spring-boot-microservice-c
