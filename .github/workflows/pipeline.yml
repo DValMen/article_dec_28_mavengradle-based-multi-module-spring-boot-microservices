@@ -41,9 +41,6 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
-      - name: Docker Build
-        run: |
-          docker images | grep multi-module-spring-boot
           
       - name: Send docker images
         run: |
