@@ -15,6 +15,22 @@ jobs:
         with:
           java-version: '11'
           distribution: 'zulu' # Alternative distribution options are available
+      - name: Compilar
+        run: |
+          chmod +x gradlew
+          ./gradlew build bootBuildImage
+          
+      - name: Verificar compilado
+        run: |
+            ls -lt 
+            ls -lt $GITHUB_WORKSPACE/build
+            ls -lt $GITHUB_WORKSPACE/service-a/build/libs
+            ls -lt $GITHUB_WORKSPACE/service-b/build/libs
+            ls -lt $GITHUB_WORKSPACE/service-c/build/libs
+            
+      - name: Verificar compilado
+        run: docker images 
+      
       - name: Cache SonarCloud packages
         uses: actions/cache@v3
         with:
@@ -41,30 +57,6 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
-
-      - name: Docker Build
-        run: |
-            ls -lt 
-            ls -lt $GITHUB_WORKSPACE/build
-            ls -lt $GITHUB_WORKSPACE/service-a/build/libs
-            ls -lt $GITHUB_WORKSPACE/service-b/build/libs
-            ls -lt $GITHUB_WORKSPACE/service-c/build/libs
-            
-      - name: Verificar compilado
-        run: docker images 
-        
-      - name: Prueba CURL
-        run: |
-          java -jar $GITHUB_WORKSPACE/service-a/build/libs/service-a-0.0.1-SNAPSHOT.jar
-          java -jar $GITHUB_WORKSPACE/service-b/build/libs/service-b-0.0.1-SNAPSHOT.jar
-          java -jar $GITHUB_WORKSPACE/service-c/build/libs/service-c-0.0.1-SNAPSHOT.jar
-
-          sleep 20
-          
-          curl http://localhost:8081/greeting
-          curl http://localhost:8082/greeting
-          curl http://localhost:8083/greeting
-          
       - name: Send docker images
         run: |
           docker images | multi-module-spring-boot-microservice
