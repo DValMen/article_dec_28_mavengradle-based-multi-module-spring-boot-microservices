@@ -59,7 +59,6 @@ jobs:
 
       - name: Send docker images
         run: |
-          docker images | multi-module-spring-boot-microservice
           docker tag 7d820823f33c dvalmen/multi-module-spring-boot-microservice-a
           docker tag c46339799598 dvaldes/multi-module-spring-boot-microservice-b
           docker tag 61e555bbcb7b dvaldes/multi-module-spring-boot-microservice-c
