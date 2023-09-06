@@ -52,17 +52,7 @@ jobs:
             
       - name: Verificar compilado
         run: docker images 
-          
-      - name: Send docker images
-        run: |
-          docker images | multi-module-spring-boot-microservice
-          docker tag 7d820823f33c dvalmen/multi-module-spring-boot-microservice-a
-          docker tag c46339799598 dvaldes/multi-module-spring-boot-microservice-b
-          docker tag 61e555bbcb7b dvaldes/multi-module-spring-boot-microservice-c
-          docker push dvalmen/multi-module-spring-boot-microservice-a
-          docker push dvalmen/multi-module-spring-boot-microservice-b
-          docker push dvalmen/multi-module-spring-boot-microservice-c
-          
+        
       - name: Prueba CURL
         run: |
           java -jar $GITHUB_WORKSPACE/service-a/build/libs/service-a-0.0.1-SNAPSHOT.jar
@@ -74,3 +64,13 @@ jobs:
           curl http://localhost:8081/greeting
           curl http://localhost:8082/greeting
           curl http://localhost:8083/greeting
+          
+      - name: Send docker images
+        run: |
+          docker images | multi-module-spring-boot-microservice
+          docker tag 7d820823f33c dvalmen/multi-module-spring-boot-microservice-a
+          docker tag c46339799598 dvaldes/multi-module-spring-boot-microservice-b
+          docker tag 61e555bbcb7b dvaldes/multi-module-spring-boot-microservice-c
+          docker push dvalmen/multi-module-spring-boot-microservice-a
+          docker push dvalmen/multi-module-spring-boot-microservice-b
+          docker push dvalmen/multi-module-spring-boot-microservice-c
